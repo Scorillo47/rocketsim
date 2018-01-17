@@ -1,0 +1,213 @@
+#############################################################
+- testing Falcon 9 with payload 8000 ... 
+===================================
+Stage selected:  S2
+kg | Dry Mass:  = 4500
+kg | Payload Mass:  = 8000
+
+kg | Propellant Mass:  = 111500
+
+kN | Thrust:  = 934
+s | Specific Impulse:  = 348
+
+Tsiolkovsky Rocket Equation Delta-v: 7830.6533371610085m/s.
+
+Burning 273.68245486246695 kg of fuel per second.
+Burn Time: 407.4064596359743 seconds.
+Total Delta-v for specified vehicle: 7864.184550233996~m/s.
+===================================
+Stage selected:  S1
+kg | Dry Mass:  = 27200
+kg | Payload Mass:  = 124000
+
+kg | Propellant Mass:  = 411000
+
+kN | Thrust:  = 7605
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 3818.5120897453385m/s.
+
+Burning 2615.4947047882447 kg of fuel per second.
+Burn Time: 157.14044430966467 seconds.
+Total Delta-v for specified vehicle: 3836.9118170497663~m/s.
+Delta V =  11701.096367283762
+#############################################################
+- testing Falcon 9 with payload 5000 ... 
+===================================
+Stage selected:  S2
+kg | Dry Mass:  = 4500
+kg | Payload Mass:  = 5000
+
+kg | Propellant Mass:  = 111500
+
+kN | Thrust:  = 934
+s | Specific Impulse:  = 348
+
+Tsiolkovsky Rocket Equation Delta-v: 8683.64700573582m/s.
+
+Burning 273.68245486246695 kg of fuel per second.
+Burn Time: 407.4064596359743 seconds.
+Total Delta-v for specified vehicle: 8728.837719148174~m/s.
+===================================
+Stage selected:  S1
+kg | Dry Mass:  = 27200
+kg | Payload Mass:  = 121000
+
+kg | Propellant Mass:  = 411000
+
+kN | Thrust:  = 7605
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 3861.2266112180064m/s.
+
+Burning 2615.4947047882447 kg of fuel per second.
+Burn Time: 157.14044430966467 seconds.
+Total Delta-v for specified vehicle: 3880.0998857091836~m/s.
+Delta V =  12608.937604857358
+#############################################################
+- testing Falcon Heavy with payload 8000 and center  booster fuel fraction 0.700000 consumed before side booster separation and 0.080000 fraction for center recovery 
+===================================
+Stage selected:  FH_S10
+kg | Dry Mass:  = 86200
+kg | Payload Mass:  = 466240.0
+
+kg | Propellant Mass:  = 887760.0
+
+kN | Thrust:  = 20533.5
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 2786.109069563684m/s.
+
+Burning 7061.835702928261 kg of fuel per second.
+Burn Time: 125.71235544773174 seconds.
+Total Delta-v for specified vehicle: 2797.549921723455~m/s.
+===================================
+Stage selected:  FH_S15
+kg | Dry Mass:  = 32200
+kg | Payload Mass:  = 153880.0
+
+kg | Propellant Mass:  = 147960.00000000003
+
+kN | Thrust:  = 7605
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 1701.232370783692m/s.
+
+Burning 2615.4947047882447 kg of fuel per second.
+Burn Time: 56.57055995147929 seconds.
+Total Delta-v for specified vehicle: 1710.2464495850932~m/s.
+S1(10 + 15) Delta V =  4507.796371308548
+===================================
+Stage selected:  S2
+kg | Dry Mass:  = 4500
+kg | Payload Mass:  = 8000
+
+kg | Propellant Mass:  = 111500
+
+kN | Thrust:  = 934
+s | Specific Impulse:  = 348
+
+Tsiolkovsky Rocket Equation Delta-v: 7830.6533371610085m/s.
+
+Burning 273.68245486246695 kg of fuel per second.
+Burn Time: 407.4064596359743 seconds.
+Total Delta-v for specified vehicle: 7864.184550233996~m/s.
+S1(10 + 15) + S2 Delta V =  12371.980921542545
+#############################################################
+- testing Falcon SuperHeavy with payload 8000, 4 side boosters and center booster fuel fraction 0.700000 consumed before side booster separation and 0.080000 fraction for center recovery 
+===================================
+Stage selected:  FSH_S10
+kg | Dry Mass:  = 140200
+kg | Payload Mass:  = 630640.0
+
+kg | Propellant Mass:  = 1545360.0
+
+kN | Thrust:  = 35743.5
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 3199.0272980807854m/s.
+
+Burning 12292.82511250475 kg of fuel per second.
+Burn Time: 125.71235544773174 seconds.
+Total Delta-v for specified vehicle: 3214.4752999297866~m/s.
+===================================
+Stage selected:  FH_S15
+kg | Dry Mass:  = 32200
+kg | Payload Mass:  = 153880.0
+
+kg | Propellant Mass:  = 147960.00000000003
+
+kN | Thrust:  = 7605
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 1701.232370783692m/s.
+
+Burning 2615.4947047882447 kg of fuel per second.
+Burn Time: 56.57055995147929 seconds.
+Total Delta-v for specified vehicle: 1710.2464495850932~m/s.
+S1(10 + 15) Delta V =  4924.72174951488
+===================================
+Stage selected:  S2
+kg | Dry Mass:  = 4500
+kg | Payload Mass:  = 8000
+
+kg | Propellant Mass:  = 111500
+
+kN | Thrust:  = 934
+s | Specific Impulse:  = 348
+
+Tsiolkovsky Rocket Equation Delta-v: 7830.6533371610085m/s.
+
+Burning 273.68245486246695 kg of fuel per second.
+Burn Time: 407.4064596359743 seconds.
+Total Delta-v for specified vehicle: 7864.184550233996~m/s.
+S1(10 + 15) + S2 Delta V =  12788.906299748876
+#############################################################
+- testing Falcon SuperHeavy with payload 8000, 6 side boosters and center booster fuel fraction 0.700000 consumed before side booster separation and 0.080000 fraction for center recovery 
+===================================
+Stage selected:  FSH_S10
+kg | Dry Mass:  = 139800
+kg | Payload Mass:  = 795040.0
+
+kg | Propellant Mass:  = 2202960.0
+
+kN | Thrust:  = 50953.5
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 3520.904939417319m/s.
+
+Burning 17523.81452208124 kg of fuel per second.
+Burn Time: 125.71235544773172 seconds.
+Total Delta-v for specified vehicle: 3540.011347415556~m/s.
+===================================
+Stage selected:  FH_S15
+kg | Dry Mass:  = 32200
+kg | Payload Mass:  = 153880.0
+
+kg | Propellant Mass:  = 147960.00000000003
+
+kN | Thrust:  = 7605
+s | Specific Impulse:  = 296.5
+
+Tsiolkovsky Rocket Equation Delta-v: 1701.232370783692m/s.
+
+Burning 2615.4947047882447 kg of fuel per second.
+Burn Time: 56.57055995147929 seconds.
+Total Delta-v for specified vehicle: 1710.2464495850932~m/s.
+S1(10 + 15) Delta V =  5250.25779700065
+===================================
+Stage selected:  S2
+kg | Dry Mass:  = 4500
+kg | Payload Mass:  = 8000
+
+kg | Propellant Mass:  = 111500
+
+kN | Thrust:  = 934
+s | Specific Impulse:  = 348
+
+Tsiolkovsky Rocket Equation Delta-v: 7830.6533371610085m/s.
+
+Burning 273.68245486246695 kg of fuel per second.
+Burn Time: 407.4064596359743 seconds.
+Total Delta-v for specified vehicle: 7864.184550233996~m/s.
+S1(10 + 15) + S2 Delta V =  13114.442347234646

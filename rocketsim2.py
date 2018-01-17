@@ -251,10 +251,10 @@ f10recovery = 0.20 # 8% left for center booster recovery
 finalPayload = 8000
 numSideBoosters = 4
 
-print(("- testing Falcon SuperHeavy with payload %d and center " + 
-            " booster fuel fraction %f consumed before" + 
+print(("- testing Falcon SuperHeavy with payload %d, %d side boosters "\
+            "and center booster fuel fraction %f consumed before" + 
             " side booster separation and %f fraction for center recovery ") % 
-            (finalPayload, fCBS10ThrottleBack, f15recovery))
+            (finalPayload, numSideBoosters, fCBS10ThrottleBack, f15recovery))
 
 fhs2 = F9_S2(finalPayload)
 f9s1 = F9_S1(s2)
@@ -278,10 +278,10 @@ f10recovery = 0.20 # 8% left for center booster recovery
 finalPayload = 8000
 numSideBoosters = 6
 
-print(("- testing Falcon SuperHeavy with payload %d and center " + 
-            " booster fuel fraction %f consumed before" + 
+print(("- testing Falcon SuperHeavy with payload %d, %d side boosters "\
+            "and center booster fuel fraction %f consumed before" + 
             " side booster separation and %f fraction for center recovery ") % 
-            (finalPayload, fCBS10ThrottleBack, f15recovery))
+            (finalPayload, numSideBoosters, fCBS10ThrottleBack, f15recovery))
 
 fhs2 = F9_S2(finalPayload)
 f9s1 = F9_S1(s2)
