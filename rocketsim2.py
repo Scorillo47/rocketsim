@@ -1,3 +1,5 @@
+# https://www.reddit.com/r/spacex/comments/7o2e1v/an_analysis_of_falcon_9_falcon_heavy_and_kestrel/ 
+
 import os
 clear = lambda: os.system('cls')
  
@@ -17,7 +19,6 @@ class F9_S2:
 class F9_S1:
     def __init__(self, s2):
         self.s2 = s2
-
         self.Name = "S1"
         self.Drymass = 27200 
         self.PayloadMass = s2.Drymass + s2.PayloadMass + s2.PropellantMass
@@ -27,44 +28,92 @@ class F9_S1:
 
 
 class FH_S15:
-    def __init__(self, s2, f9s1, fCBS10ThrottleBack, fS15recovery, fS10recovery):
+    def __init__(self, s2, f9s1, 
+            fCBS10ThrottleBack, fS15recovery, fS10recovery):
+        self.Name = "FH_S15"
         self.s2 = s2
         self.f9s1 = f9s1
         self.fCBS10ThrottleBack = fCBS10ThrottleBack
         self.fS15recovery = fS15recovery
         self.fS10recovery = fS10recovery
+        self.Calc()
 
-        self.Name = "FHS15"
+    def Calc(self):
         self.Drymass = f9s1.Drymass + 5000
         s2Payload = s2.Drymass + s2.PayloadMass + s2.PropellantMass
         self.PayloadMass = s2Payload + \
-            f9s1.PropellantMass * fS15recovery
-        f10CB_FuelFraction = fCBS10ThrottleBack * (1 - fS10recovery)
+            f9s1.PropellantMass * self.fS15recovery
+        f10CB_FuelFraction = fCBS10ThrottleBack * (1 - self.fS10recovery)
         self.PropellantMass = f9s1.PropellantMass * \
-            (1 - f10CB_FuelFraction - fS15recovery)
+            (1 - f10CB_FuelFraction - self.fS15recovery)
         self.Thrust = 845 * 9  # 100% burn
         self.ISP = 296.5
 
+
+# Two side boosters
 class FH_S10:
     def __init__(self, s2, s15, f9s1, fCBS10ThrottleBack, fS10recovery):
+        self.Name = "FH_S10"
         self.s2 = s2
         self.s15 = s15
         self.f9s1 = f9s1
         self.fCBS10ThrottleBack = fCBS10ThrottleBack
+        self.fS10recovery = fS10recovery
+        self.Calc()
 
-        self.Name = "FHS10"
+    def Calc(self):
+        # 200kg from the booster drymass due to replacement of the
+        #   interstage with nosecones which look smaller
+        # 5000kg to the center core drymass due to structural
+        #   reinforcements and embedded attachment points. 
         self.Drymass = 3 * f9s1.Drymass + 5000 - 400
-        s2Payload = s2.Drymass + s2.PayloadMass + s2.PropellantMass
-        f10CB_FuelFraction = fCBS10ThrottleBack * (1 - fS10recovery)
-        self.PayloadMass =  s2Payload + \
-            2 * f9s1.PropellantMass * (fS10recovery) + \
+        self.s2Payload = s2.Drymass + s2.PayloadMass + s2.PropellantMass
+        f10CB_FuelFraction = self.fCBS10ThrottleBack * (1 - self.fS10recovery)
+        self.PayloadMass =  self.s2Payload + \
+            2 * f9s1.PropellantMass * (self.fS10recovery) + \
             f9s1.PropellantMass * (1 - f10CB_FuelFraction)
         self.PropellantMass = \
-            2 * f9s1.PropellantMass * (1 - fS10recovery) + \
+            2 * f9s1.PropellantMass * (1 - self.fS10recovery) + \
             f9s1.PropellantMass * (f10CB_FuelFraction)
-        self.Thrust = 845 * 9 * 2 + 845 * 9 * fCBS10ThrottleBack
+        self.Thrust = 845 * 9 * 2 + 845 * 9 * self.fCBS10ThrottleBack
         self.ISP = 296.5
 
+
+# More side boosters
+class FSH_S10:
+    def __init__(self, s2, s15, f9s1, 
+            fCBS10ThrottleBack, fS10recovery, numSideBoosters):
+        self.Name = "FSH_S10"
+        self.s2 = s2
+        self.s15 = s15
+        self.f9s1 = f9s1
+        self.fCBS10ThrottleBack = fCBS10ThrottleBack
+        self.fS10recovery = fS10recovery
+        self.numSideBoosters = numSideBoosters
+        self.Calc()
+
+    def Calc(self):
+        # 200kg from the booster drymass due to replacement of the
+        #   interstage with nosecones which look smaller
+        # 5000kg to the center core drymass due to structural
+        #   reinforcements and embedded attachment points. 
+        self.Drymass = 5 * f9s1.Drymass + 5000 - self.numSideBoosters * 200
+        self.s2Payload = s2.Drymass + s2.PayloadMass + s2.PropellantMass
+        f10CB_FuelFraction = self.fCBS10ThrottleBack * (1 - self.fS10recovery)
+
+        self.PayloadMass = self.s2Payload
+        self.PayloadMass += self.numSideBoosters * f9s1.PropellantMass * \
+                                self.fS10recovery
+        self.PayloadMass += f9s1.PropellantMass * (1 - f10CB_FuelFraction)
+
+        self.PropellantMass = f9s1.PropellantMass * \
+                self.numSideBoosters * (1 - self.fS10recovery)
+        self.PropellantMass += f9s1.PropellantMass * (f10CB_FuelFraction)
+
+        self.Thrust = 845 * 9 * self.numSideBoosters
+        self.Thrust += 845 * 9 * self.fCBS10ThrottleBack
+
+        self.ISP = 296.5
 
 class Sim:
 
@@ -187,8 +236,62 @@ f9s1 = F9_S1(s2)
 fhs15 = FH_S15(fhs2, f9s1, fCBS10ThrottleBack, f15recovery, f10recovery)
 fhs10 = FH_S10(fhs2, fhs15, f9s1, fCBS10ThrottleBack, f10recovery)
 
-deltav = s.run(fhs2, True)
+deltav = s.run(fhs10, True)    
 deltav += s.run(fhs15, True)    
-deltav += s.run(fhs10, True)    
-print("Delta V = ", deltav)
+print("S1(10 + 15) Delta V = ", deltav)
+deltav += s.run(fhs2, True)
+print("S1(10 + 15) + S2 Delta V = ", deltav)
 
+print("#############################################################")
+
+fCBS10ThrottleBack = 0.7 # 30% consumed prior to side booster separation
+f15recovery = 0.08 # 8% left for center booster recovery
+f10recovery = 0.20 # 8% left for center booster recovery
+
+finalPayload = 8000
+numSideBoosters = 4
+
+print(("- testing Falcon SuperHeavy with payload %d and center " + 
+            " booster fuel fraction %f consumed before" + 
+            " side booster separation and %f fraction for center recovery ") % 
+            (finalPayload, fCBS10ThrottleBack, f15recovery))
+
+fhs2 = F9_S2(finalPayload)
+f9s1 = F9_S1(s2)
+
+fhs15 = FH_S15(fhs2, f9s1, fCBS10ThrottleBack, f15recovery, f10recovery)
+fhs10 = FSH_S10(fhs2, fhs15, f9s1, fCBS10ThrottleBack, f10recovery, \
+            numSideBoosters)
+
+deltav = s.run(fhs10, True)    
+deltav += s.run(fhs15, True)    
+print("S1(10 + 15) Delta V = ", deltav)
+deltav += s.run(fhs2, True)
+print("S1(10 + 15) + S2 Delta V = ", deltav)
+
+print("#############################################################")
+
+fCBS10ThrottleBack = 0.7 # 30% consumed prior to side booster separation
+f15recovery = 0.08 # 8% left for center booster recovery
+f10recovery = 0.20 # 8% left for center booster recovery
+
+finalPayload = 8000
+numSideBoosters = 6
+
+print(("- testing Falcon SuperHeavy with payload %d and center " + 
+            " booster fuel fraction %f consumed before" + 
+            " side booster separation and %f fraction for center recovery ") % 
+            (finalPayload, fCBS10ThrottleBack, f15recovery))
+
+fhs2 = F9_S2(finalPayload)
+f9s1 = F9_S1(s2)
+
+fhs15 = FH_S15(fhs2, f9s1, fCBS10ThrottleBack, f15recovery, f10recovery)
+fhs10 = FSH_S10(fhs2, fhs15, f9s1, fCBS10ThrottleBack, f10recovery, \
+            numSideBoosters)
+
+deltav = s.run(fhs10, True)    
+deltav += s.run(fhs15, True)    
+print("S1(10 + 15) Delta V = ", deltav)
+deltav += s.run(fhs2, True)
+print("S1(10 + 15) + S2 Delta V = ", deltav)
